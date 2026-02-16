@@ -1,11 +1,15 @@
 import { API_PROFILE } from "@/constants/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { Alert } from "react-native";
+import Toast from "react-native-toast-message";
 export const fetchUserProfile = async () => {
   try {
     const token = await AsyncStorage.getItem("user_Token");
     if (!token) {
+      Toast.show({
+        type: "error",
+        text1: "Token hatası",
+      });
       return null;
     }
     const response = await axios.get(API_PROFILE, {
@@ -18,8 +22,12 @@ export const fetchUserProfile = async () => {
       return data;
     } else throw new Error("empty data");
   } catch (error: any) {
+    Toast.show({
+      type: "error",
+      text1: "Bir hata oluştu",
+      text2: error?.message,
+    });
     console.error("Profil Yükleme Hatası:", error);
-    Alert.alert("Hata", "Veri çekilemedi.");
     return null;
   }
 };

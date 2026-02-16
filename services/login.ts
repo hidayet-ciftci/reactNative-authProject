@@ -1,7 +1,7 @@
 import { API_LOGIN } from "@/constants/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { Alert } from "react-native";
+import Toast from "react-native-toast-message";
 interface user {
   username: string;
   password: string;
@@ -21,8 +21,12 @@ export const handleLogin = async (username: string, password: string) => {
       return true;
     } else throw new Error("token hatası");
   } catch (error: any) {
+    Toast.show({
+      type: "error",
+      text1: "Bir hata oluştu",
+      text2: error?.message,
+    });
     console.error("Bir hata oluştu:", error);
-    Alert.alert("Hata", "Bağlantı hatası!");
     return false;
   }
 };

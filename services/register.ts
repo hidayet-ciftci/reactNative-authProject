@@ -2,6 +2,7 @@ import { user } from "@/app/(tabs)/register";
 import { API_REGISTER, FAKE_TOKEN } from "@/constants/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 export const handleRegisterUser = async (user: user) => {
   try {
@@ -16,6 +17,11 @@ export const handleRegisterUser = async (user: user) => {
       return true;
     } else return false;
   } catch (error: any) {
+    Toast.show({
+      type: "error",
+      text1: "Bir hata oluştu",
+      text2: error?.message,
+    });
     console.error(error);
     return false;
   }

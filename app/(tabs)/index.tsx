@@ -3,14 +3,8 @@ import { handleLogin } from "@/services/login";
 import { router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  Alert,
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Toast from "react-native-toast-message";
 const LoginScreen = () => {
   /*   
   const [username, setUsername] = useState<string>("emilys");
@@ -28,11 +22,27 @@ const LoginScreen = () => {
   const checkLogin = async (data: { username: string; password: string }) => {
     if (await handleLogin(data.username, data.password)) {
       // checkLogin'e form'dan gelen datayı gönderdik
+      /* 
       console.log("giriş yapıldı");
-      router.replace("/profile");
+      router.replace("/profile"); 
+      bunlar yerine Toast kullandık
+      */
+      Toast.show({
+        type: "success",
+        text1: "Giriş Başarılı",
+        text2: "Giriş Sayfasına yönlendiriliyorsunuz",
+      });
+      // Kullanıcı mesajı görsün diye TimeOut koyduk
+      setTimeout(() => {
+        router.replace("/profile");
+      }, 1000);
     } else {
       console.log("wrong login");
-      Alert.alert("Wrong password or Username", "try again");
+      Toast.show({
+        type: "error",
+        text1: "Giriş Başarısız",
+        text2: "Kullanıcı adı veya şifre hatalı ",
+      });
     }
   };
 

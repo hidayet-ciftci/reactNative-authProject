@@ -4,6 +4,7 @@ import { router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, StyleSheet, Text, View } from "react-native";
+import Toast from "react-native-toast-message";
 
 export interface user {
   firstName: string;
@@ -25,8 +26,20 @@ const LoginScreen = () => {
 
   const handleRegister = async (data: user) => {
     if (await handleRegisterUser(data)) {
-      router.push({
-        pathname: "/profile",
+      Toast.show({
+        type: "success",
+        text1: "kullanıcı kayıt edildi",
+        text2: "giriş sayfasına yönlendirliyorsunuz",
+      });
+      setTimeout(() => {
+        router.push({
+          pathname: "/profile",
+        });
+      }, 1000);
+    } else {
+      Toast.show({
+        type: "error",
+        text1: "kullanıcı kayıt edilemedi",
       });
     }
   };
@@ -55,7 +68,7 @@ const LoginScreen = () => {
       />
       <CustomInput
         name="age"
-        placeholder="yaşınızı girini<"
+        placeholder="yaşınızı giriniz"
         control={control}
         keyboardType="numeric"
         rules={{

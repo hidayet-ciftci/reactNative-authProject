@@ -4,13 +4,13 @@ import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Button,
   Image,
   StyleSheet,
   Text,
   View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 export interface profile {
   id: number;
   firstName: string;
@@ -34,14 +34,25 @@ const ProfileScreen = () => {
       setUser(profileData);
       setLoading(false);
     } else {
-      Alert.alert("Oturum Kapalı", "Lütfen tekrar giriş yapın."); // Router'ı component , içinde kullanmak best practice
-      router.replace("/"); // api ya da services.ts içinde sadece o func işlemi olsun, data return.
+      Toast.show({
+        type: "error",
+        text1: "kullanıcı hatası oluştu",
+      }); // Router'ı component , içinde kullanmak best practice
+      setTimeout(() => {
+        router.replace("/");
+      }, 1000); // api ya da services.ts içinde sadece o func işlemi olsun, data return.
     }
   };
 
   const handleLogout = async () => {
+    Toast.show({
+      type: "info",
+      text1: "Çıkış yapılıyor",
+    });
     await AsyncStorage.removeItem("user_Token");
-    router.replace("/");
+    setTimeout(() => {
+      router.replace("/");
+    }, 1000);
   };
   useEffect(() => {
     handleProfile();
