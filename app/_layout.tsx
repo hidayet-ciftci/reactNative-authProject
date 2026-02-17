@@ -11,7 +11,7 @@ import Toast from "react-native-toast-message";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export const unstable_settings = {
-  anchor: "(tabs)",
+  anchor: "(auth)",
 };
 
 export default function RootLayout() {
@@ -20,7 +20,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="home" />
         <Stack.Screen name="profile" />
       </Stack>
       <StatusBar style="auto" />

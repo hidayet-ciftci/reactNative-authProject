@@ -5,8 +5,8 @@
 7- fetch yerine axios kullanımı ++
 8- boşken istek atmamalı ++ React-Hook-form ++
 5-error handling'de toast kullanımı ++
+1-View ,text , style gibiler mobile ile uyumlu light/dark modu entegre edilecek ++
 
-1-View ,text , style gibiler mobile ile uyumlu light/dark modu entegre edilecek
 9- sayfa / mobil tasarımı eklenecek , güzelleştirilecek
 
 10-dökümantasyon hazırlanacak.

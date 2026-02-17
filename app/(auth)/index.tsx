@@ -77,7 +77,7 @@ const LoginScreen = () => {
         <ThemedText>Hesabın yok mu? </ThemedText>
         <TouchableOpacity
           onPress={() => {
-            router.push("/(tabs)/register");
+            router.push("/(auth)/register");
           }}
         >
           <ThemedText type="link">Kayıt ol </ThemedText>
