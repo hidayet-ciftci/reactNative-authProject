@@ -1,9 +1,11 @@
 import CustomInput from "@/components/customInput";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
 import { handleRegisterUser } from "@/services/register";
 import { router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import Toast from "react-native-toast-message";
 
 export interface user {
@@ -44,10 +46,10 @@ const LoginScreen = () => {
     }
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.titleView}>
-        <Text style={styles.title}>kayıt ol</Text>
-      </View>
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.titleView}>
+        <ThemedText type="title">kayıt ol</ThemedText>
+      </ThemedView>
       <CustomInput
         name="firstName"
         placeholder="isim"
@@ -101,36 +103,15 @@ const LoginScreen = () => {
         }}
       />
       <Button title="Kayıt ol" onPress={handleSubmit(handleRegister)} />
-    </View>
+    </ThemedView>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: 20, gap: 5 },
-  title: {
-    color: "white",
-    fontSize: 40,
-  },
   titleView: {
     marginBottom: 25,
     alignItems: "center",
-  },
-  input: {
-    color: "white",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  btnSize: {
-    textDecorationLine: "underline",
-    color: "blue",
-  },
-  register: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
   },
 });
 

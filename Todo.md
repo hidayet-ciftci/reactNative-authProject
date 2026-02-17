@@ -10,4 +10,3 @@
 9- sayfa / mobil tasarımı eklenecek , güzelleştirilecek
 
 10-dökümantasyon hazırlanacak.
-11- ileri zaman için token mantığı get ile her seferinde değil , tek seferde tüm sayfalar için atılacak.

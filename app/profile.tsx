@@ -1,15 +1,10 @@
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
 import { fetchUserProfile } from "@/services/profile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, Button, Image, StyleSheet } from "react-native";
 import Toast from "react-native-toast-message";
 export interface profile {
   id: number;
@@ -60,49 +55,53 @@ const ProfileScreen = () => {
 
   if (loading) {
     return (
-      <View style={styles.center}>
+      <ThemedView style={styles.center}>
         <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Bilgiler yükleniyor...</Text>
-      </View>
+        <ThemedText>Bilgiler yükleniyor...</ThemedText>
+      </ThemedView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       {user ? (
         <>
-          <View style={styles.header}>
+          <ThemedView style={styles.header}>
             <Image
               source={{ uri: user.image || "https://via.placeholder.com/150" }}
               style={styles.avatar}
             />
-            <Text style={styles.name}>
+            <ThemedText style={styles.name}>
               {user.firstName} {user.lastName}
-            </Text>
-            <Text style={styles.username}>@{user.username}</Text>
-          </View>
+            </ThemedText>
+            <ThemedText style={styles.username}>@{user.username}</ThemedText>
+          </ThemedView>
 
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Email:</Text>
-            <Text style={styles.value}>{user.email}</Text>
+          <ThemedView style={styles.infoContainer}>
+            <ThemedView style={styles.inputs}>
+              <ThemedText style={styles.label}>Email:</ThemedText>
+              <ThemedText style={styles.value}>{user.email}</ThemedText>
+            </ThemedView>
 
-            <Text style={styles.label}>Telefon:</Text>
-            <Text style={styles.value}>{user.phone}</Text>
-          </View>
+            <ThemedView style={styles.inputs}>
+              <ThemedText style={styles.label}>Telefon:</ThemedText>
+              <ThemedText style={styles.value}>{user.phone}</ThemedText>
+            </ThemedView>
+          </ThemedView>
 
-          <View style={styles.logoutBtn}>
+          <ThemedView style={styles.logoutBtn}>
             <Button title="Çıkış Yap" onPress={handleLogout} color="red" />
-          </View>
+          </ThemedView>
         </>
       ) : (
-        <Text>Kullanıcı bilgisi bulunamadı.</Text>
+        <ThemedText>Kullanıcı bilgisi bulunamadı.</ThemedText>
       )}
-    </View>
+    </ThemedView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: "#f5f5f5" },
+  container: { flex: 1, padding: 20 },
   center: { flex: 1, justifyContent: "center", alignItems: "center" },
   header: { alignItems: "center", marginBottom: 30, marginTop: 20 },
   avatar: {
@@ -116,12 +115,15 @@ const styles = StyleSheet.create({
   name: { fontSize: 24, fontWeight: "bold" },
   username: { fontSize: 16, color: "gray" },
   infoContainer: {
-    backgroundColor: "white",
-    padding: 20,
+    padding: 10,
     borderRadius: 10,
     elevation: 3,
+    gap: 10,
   },
-  label: { fontSize: 14, fontWeight: "bold", color: "#555", marginTop: 10 },
+  inputs: {
+    padding: 10,
+  },
+  label: { fontSize: 14, fontWeight: "bold", marginTop: 10 },
   value: { fontSize: 16, marginBottom: 5 },
   logoutBtn: { marginTop: 30 },
 });

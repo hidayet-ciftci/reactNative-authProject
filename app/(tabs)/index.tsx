@@ -1,9 +1,11 @@
 import CustomInput from "@/components/customInput";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
 import { handleLogin } from "@/services/login";
 import { router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button, StyleSheet, TouchableOpacity } from "react-native";
 import Toast from "react-native-toast-message";
 const LoginScreen = () => {
   /*   
@@ -47,10 +49,10 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.titleView}>
-        <Text style={styles.title}>Giriş yap</Text>
-      </View>
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.titleView}>
+        <ThemedText type="title">Giriş yap</ThemedText>
+      </ThemedView>
       <CustomInput
         name="username"
         placeholder="Kullanici adi"
@@ -71,46 +73,32 @@ const LoginScreen = () => {
         }}
       />
       <Button title="Giriş Yap" onPress={handleSubmit(checkLogin)} />
-      <View style={styles.register}>
-        <Text style={[{ color: "white" }]}>Hesabın yok mu? </Text>
+      <ThemedView style={styles.register}>
+        <ThemedText>Hesabın yok mu? </ThemedText>
         <TouchableOpacity
           onPress={() => {
             router.push("/(tabs)/register");
           }}
         >
-          <Text style={styles.btnSize}>Kayıt ol </Text>
+          <ThemedText type="link">Kayıt ol </ThemedText>
         </TouchableOpacity>
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", padding: 20, gap: 5 },
-  title: {
-    color: "white",
-    fontSize: 40,
-  },
   titleView: {
     marginBottom: 25,
     alignItems: "center",
-  },
-  input: {
-    color: "white",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  btnSize: {
-    textDecorationLine: "underline",
-    color: "blue",
   },
   register: {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
+    marginTop: 10,
+    gap: 5,
   },
 });
 
