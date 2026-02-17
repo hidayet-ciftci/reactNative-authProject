@@ -22,7 +22,7 @@ export default function TabLayout() {
         options={{
           title: "Giriş yap",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <IconSymbol size={28} name="gear" color={color} />
           ),
         }}
       />
@@ -31,7 +31,7 @@ export default function TabLayout() {
         options={{
           title: "kayıt ol",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <IconSymbol size={28} name="pentagon" color={color} />
           ),
         }}
       />

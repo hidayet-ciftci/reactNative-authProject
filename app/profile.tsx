@@ -4,7 +4,13 @@ import { fetchUserProfile } from "@/services/profile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Button, Image, StyleSheet } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  Image,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import Toast from "react-native-toast-message";
 export interface profile {
   id: number;
@@ -73,7 +79,7 @@ const ProfileScreen = () => {
   return (
     <ThemedView style={styles.container}>
       {user ? (
-        <>
+        <ScrollView>
           <ThemedView style={styles.header}>
             <Image
               source={{ uri: user.image || "https://via.placeholder.com/150" }}
@@ -104,7 +110,7 @@ const ProfileScreen = () => {
           <ThemedView style={styles.logoutBtn}>
             <Button title="Çıkış Yap" onPress={handleLogout} color="red" />
           </ThemedView>
-        </>
+        </ScrollView>
       ) : (
         <ThemedText>Kullanıcı bilgisi bulunamadı.</ThemedText>
       )}
