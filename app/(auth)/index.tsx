@@ -55,7 +55,7 @@ const LoginScreen = () => {
       </ThemedView>
       <CustomInput
         name="username"
-        placeholder="Kullanici adi"
+        placeholder="Kullanıcı adı"
         control={control}
         rules={{
           required: "kullanici adi zorunludur",

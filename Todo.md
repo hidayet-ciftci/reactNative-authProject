@@ -11,3 +11,5 @@
 10-dökümantasyon hazırlanacak.
 
 yup--
+
+(auth) / (tabs) yapısı içindeyken , url ? neye göre çalışır--
