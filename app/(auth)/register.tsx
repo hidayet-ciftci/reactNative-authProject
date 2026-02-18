@@ -12,7 +12,7 @@ import Toast from "react-native-toast-message";
 const LoginScreen = () => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      username: "", // Varsayılan değerleri buraya yazıyoruz
+      username: "",
       password: "",
       firstName: "",
       lastName: "",
