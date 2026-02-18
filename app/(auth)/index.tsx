@@ -23,23 +23,16 @@ const LoginScreen = () => {
 
   const checkLogin = async (data: { username: string; password: string }) => {
     if (await handleLogin(data.username, data.password)) {
-      // checkLogin'e form'dan gelen datayı gönderdik
-      /* 
-      console.log("giriş yapıldı");
-      router.replace("/profile"); 
-      bunlar yerine Toast kullandık
-      */
       Toast.show({
         type: "success",
         text1: "Giriş Başarılı",
         text2: "Giriş Sayfasına yönlendiriliyorsunuz",
       });
-      // Kullanıcı mesajı görsün diye TimeOut koyduk
       setTimeout(() => {
         router.replace("/home");
       }, 1000);
     } else {
-      console.log("wrong login");
+      /* console.log("wrong login"); */
       Toast.show({
         type: "error",
         text1: "Giriş Başarısız",

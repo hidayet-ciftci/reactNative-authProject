@@ -22,7 +22,7 @@ export const handleLogin = async (username: string, password: string) => {
       text1: "Bir hata oluştu",
       text2: error?.message,
     });
-    console.error("Bir hata oluştu:", error);
+    /* console.error("Bir hata oluştu:", error); */
     return false;
   }
 };

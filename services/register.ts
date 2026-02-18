@@ -21,7 +21,7 @@ export const handleRegisterUser = async (user: user) => {
       text1: "Bir hata oluştu",
       text2: error?.message,
     });
-    console.error(error);
+    /* console.error(error.message); */
     return false;
   }
 };
