@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { fetchUserProfile } from "@/services/profile";
+import { fetchUserProfile } from "@/services/token";
 import { UserProfile } from "@/types/user";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";

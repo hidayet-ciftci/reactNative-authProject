@@ -2,8 +2,9 @@ import CustomInput from "@/components/customInput";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { handleLogin } from "@/services/login";
+import { fetchUserProfile } from "@/services/token";
 import { router } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, StyleSheet, TouchableOpacity } from "react-native";
 import Toast from "react-native-toast-message";
@@ -20,6 +21,17 @@ const LoginScreen = () => {
       password: "emilyspass",
     },
   });
+
+  const checkIsLogedIn = async () => {
+    const isLogedIn = await fetchUserProfile();
+    if (isLogedIn) {
+      router.replace("/home");
+    }
+  };
+
+  useEffect(() => {
+    checkIsLogedIn();
+  }, []);
 
   const checkLogin = async (data: { username: string; password: string }) => {
     if (await handleLogin(data.username, data.password)) {

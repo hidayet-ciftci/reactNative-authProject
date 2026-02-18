@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { fetchUserProfile } from "@/services/profile";
+import { fetchUserProfile } from "@/services/token";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { UserProfile } from "@/types/user";
