@@ -13,7 +13,6 @@ export const fetchUserProfile = async () => {
       return null;
     }
     const response = await axios.get(API_PROFILE, {
-      // axios ile -> url , data , config
       headers: { Authorization: "Bearer " + token },
       timeout: 10000,
     });

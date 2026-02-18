@@ -3,12 +3,20 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { handleLogin } from "@/services/login";
 import { fetchUserProfile } from "@/services/token";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+
 import Toast from "react-native-toast-message";
 const LoginScreen = () => {
+  const [loading, setLoading] = useState(true);
   /*   
   const [username, setUsername] = useState<string>("emilys");
   const [password, setPassword] = useState<string>("emilyspass"); 
@@ -23,10 +31,14 @@ const LoginScreen = () => {
   });
 
   const checkIsLogedIn = async () => {
-    const isLogedIn = await fetchUserProfile();
-    if (isLogedIn) {
-      router.replace("/home");
+    const token = await AsyncStorage.getItem("user_Token");
+    if (token) {
+      const isLogedIn = await fetchUserProfile();
+      if (isLogedIn) {
+        router.replace("/home");
+      }
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -52,6 +64,8 @@ const LoginScreen = () => {
       });
     }
   };
+
+  if (loading) return <ActivityIndicator style={{ flex: 1 }} />;
 
   return (
     <ThemedView style={styles.container}>
